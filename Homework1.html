@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div style="box-shadow:3px 3px gray;margin-top: 10px;margin-left: 10px;width:580px;height:450px;border:2px solid gray;">
+    <h1 style="margin-left:20px;">毕业生信息</h1>
+    <fieldset style="width: 500px;line-height: 30px;margin-left:20px;">
+        <legend style="color:red">学生信息</legend>
+        <form id="textfrom" method="GET" action="">
+                姓&nbsp;&nbsp;名 <input type="text" name="name1" autofocus="autofocus" required placeholder="请输入姓名" />
+                <span style="color:red">*</span>
+                <br/>
+                学&nbsp;&nbsp;号 <input type="tel" name="name2" placeholder="请输入学号"/>
+                <span style="color:red">*</span>
+                <br/>
+                手&nbsp;&nbsp;机 <input type="tel" name="name3" autocomplete="autofocus" required placeholder="请输入手机号"/>
+                <span style="color:red">*</span>
+                <br/>
+                邮&nbsp;&nbsp;箱 <input type="email" name="name4" autocomplete="autofocus" required placeholder="请输入邮箱地址"/>
+                <span style="color:red">*</span>
+                <br/>
+        </form>
+    </fieldset>
+    <fieldset style="width: 500px;line-height: 30px;margin-left:20px;">
+        <legend style="color:red">录取情况</legend> 
+        录取学校 <input form="textfrom" type="search" name="name5" autocomplete="on" list="schools" />
+        <datalist id="schools">
+            <option></option>
+            <option>河北师范大学</option>
+            <option>清华大学</option>
+            <option>北京大学</option>
+            <option>武汉大学</option>
+            <option>上海交通大学</option>
+            <option>复旦大学</option>
+            <option>浙江大学</option>
+            <option>厦门大学</option>
+        </datalist>
+        <br/>
+        录取成绩 <input form="textfrom" type="text" name="name6" autocomplete="autofocus"/>
+        <br/>
+        入学时间 <input form="textfrom" type="date" name="name7"/>
+    </fieldset>
+    <input style="margin-top:10px;margin-left:20px;" form="textfrom" type="submit"/>
+    </div>
+</body>
+</html>
