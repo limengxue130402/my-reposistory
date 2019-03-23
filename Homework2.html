@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0px;
+            margin: 0px;
+            
+        }
+        ul li{
+            float: left;
+            display: inline-block;
+            margin-right: 25px;
+            background-color:darkgray;
+        }
+        div{
+            width: 250px;
+            padding-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="goods" placeholder="请输入想查找的商品"/>
+    <input type="button" onclick="saveStorage('goods');" value="搜索"/>
+    <p style="padding-top:10px;">最近搜索</p>
+    <div id="msg"></div>
+    <input type="button" onclick="clearStorage('msg');" value="X">      
+</body>
+<script>
+    function saveStorage(id){
+        var data = document.getElementById(id).value;
+        var time = new Date().getTime();
+        for(var k = 0; k < localStorage.length; k++){
+            if(data == localStorage.getItem(localStorage.key(k))){
+               localStorage.removeItem(localStorage.key(k));
+            }
+        }        
+        localStorage.setItem(time, data);
+        loadStorage('msg');
+    }
+    function loadStorage(id){
+        var result = '<ul>';
+        for(var i = localStorage.length-1; i >= 0; i--){
+            var key = localStorage.key(i);
+            var value = localStorage.getItem(key);
+            result += '<li>' + value + '<li/>';
+        }
+        result +='<ul/>';
+        var target = document.getElementById(id);
+        target.innerHTML = result;
+    }
+    function clearStorage() {
+        localStorage.clear();
+        loadStorage('msg');
+    }
+</script>
+</html>
