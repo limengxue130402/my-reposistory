@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        canvas{
+            border: 1px solid grey;
+            /* background:grey; */
+            position: absolute;
+        }
+        div{
+            width: 200px;
+            height: 100px;
+            position: absolute;
+            text-align: center;
+            font-family: 宋体;
+            font-size: 50px;
+            padding-top: 25px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="div"></div>
+    <canvas id="canvas" width="200" height="100"></canvas>
+</body>
+<script>
+    var canvas = document.getElementById("canvas");
+    var context = canvas.getContext("2d");  
+    var div = document.getElementById("div");
+    var m = 0;
+
+    
+    var a = Math.floor(Math.random()*100+1);//获取一个1-100的随机整数
+    if(a%7 == 0){
+        div.innerHTML = "三等奖";
+    }
+    else if(a%11 == 0){
+        div.innerHTML = "二等奖";
+    }
+    else if(a%2 == 0 && a%5==0 && a%3==0){
+        div.innerHTML = "一等奖";
+    }
+    else{
+        div.innerHTML = "谢谢惠顾";
+    }
+
+    context.beginPath();
+    context.fillStyle = "grey";    
+    context.fillRect(0,0,200,100);
+    context.fill();
+    context.closePath();
+
+
+    canvas.onclick = function(e){
+        context.globalCompositeOperation = "destination-out";
+        var bbox = canvas.getBoundingClientRect();
+        var x=(e.clientX - bbox.left) * (canvas.width / bbox.width);
+        var y = (e.clientY - bbox.top) * (canvas.height / bbox.height);
+        context.beginPath();
+        context.arc(x, y, 30, 0, 2 * Math.PI);
+        context.fill();
+        context.closePath();
+
+
+    
+        var imgData = context.getImageData(0,0,200,100);
+        var k = imgData.data.length*255;
+        for(var i = 0; i < imgData.data.length; i+=4){
+            m += imgData.data[i+3];
+        }
+        if(m >= k*0.85){
+            context.clearRect(0,0,200,100);
+        }
+    }
+
+</script>
+</html>
